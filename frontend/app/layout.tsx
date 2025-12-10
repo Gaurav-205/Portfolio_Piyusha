@@ -3,8 +3,8 @@ import "./globals.css";
 import { SmoothCursor } from "@/components/ui/magic-cursor";
 
 export const metadata: Metadata = {
-  title: "Piyusha - UI/UX Designer",
-  description: "Explore Piyusha's UI/UX design portfolio showcasing user-centered design solutions and digital experiences",
+  title: "Piyusha Bhalerao - UI/UX Designer",
+  description: "Explore Piyusha Bhalerao's UI/UX design portfolio showcasing user-centered design solutions and digital experiences",
 };
 
 export default function RootLayout({

@@ -1,4 +1,5 @@
 import InfiniteGallery from "@/components/ui/3d-gallery-photography";
+import HeroPortfolio from "@/components/ui/hero-portfolio";
 
 const sampleImages = [
   {
@@ -36,6 +37,10 @@ const sampleImages = [
 ];
 
 export default function Home() {
+  // Option 1: Use Hero Portfolio (uncomment to use)
+  // return <HeroPortfolio />;
+  
+  // Option 2: Current 3D Gallery (default)
   return (
     <main className="relative min-h-screen bg-black text-white">
       <InfiniteGallery
@@ -48,8 +53,8 @@ export default function Home() {
       />
 
       <div className="pointer-events-none fixed inset-0 flex flex-col items-center justify-center text-center mix-blend-exclusion px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight mb-2 sm:mb-4">
-          <span className="italic">Piyusha</span>
+        <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-semibold tracking-tight mb-2 sm:mb-4 max-w-5xl leading-tight">
+          <span className="italic">Piyusha Bhalerao</span>
         </h1>
         <p className="text-sm sm:text-lg md:text-xl lg:text-2xl font-light tracking-wide mb-6 sm:mb-8 opacity-90">
           UI/UX Designer

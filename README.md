@@ -1,4 +1,4 @@
-# Piyusha - UI/UX Designer Portfolio
+# Piyusha Bhalerao - UI/UX Designer Portfolio
 
 <div align="center">
 
@@ -8,7 +8,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)
 
-A stunning UI/UX designer portfolio featuring an immersive 3D gallery experience and showcase of digital design work.
+A stunning UI/UX designer portfolio for Piyusha Bhalerao featuring an immersive 3D gallery experience and showcase of digital design work.
 
 [Live Demo](#) • [Getting Started](#getting-started) • [Features](#features)
 
@@ -78,7 +78,7 @@ A stunning UI/UX designer portfolio featuring an immersive 3D gallery experience
 ## 🚀 Quick Deploy to Netlify
 
 ### One-Click Deploy
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/piyusha-portfolio)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/piyusha-bhalerao-portfolio)
 
 ### Manual Deploy Steps
 1. **Build Settings in Netlify**:

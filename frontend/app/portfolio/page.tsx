@@ -1,44 +1,16 @@
+import HeroFashion from "@/components/ui/hero-fashion";
+
 export default function Portfolio() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-          <a href="/" className="text-xl sm:text-2xl font-semibold italic cursor-pointer">
-            Piyusha
-          </a>
-          <div className="hidden sm:flex items-center space-x-6 lg:space-x-8">
-            <a href="#work" className="hover:text-gray-300 transition-colors text-sm lg:text-base cursor-pointer">Work</a>
-            <a href="#about" className="hover:text-gray-300 transition-colors text-sm lg:text-base cursor-pointer">About</a>
-            <a href="#contact" className="hover:text-gray-300 transition-colors text-sm lg:text-base cursor-pointer">Contact</a>
-          </div>
-          {/* Mobile menu button */}
-          <div className="sm:hidden">
-            <button className="text-white hover:text-gray-300 cursor-pointer">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </nav>
-
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-20 sm:pt-24 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6">
-            UI/UX
-            <br />
-            <span className="italic text-gray-400">Designer</span>
-          </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-2xl leading-relaxed">
-            Crafting intuitive digital experiences that bridge the gap between user needs and business goals through thoughtful design.
-          </p>
-        </div>
-      </section>
+      <HeroFashion />
 
+      {/* Transition to dark theme */}
+      <div className="bg-gradient-to-b from-white to-gray-900 h-20"></div>
+      
       {/* Work Section */}
-      <section id="work" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
+      <section id="work" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 sm:mb-12 lg:mb-16 text-center">Featured Projects</h2>
           
@@ -80,9 +52,9 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-900/50">
+      <section id="about" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-900/50 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8">About Piyusha</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8">About Piyusha Bhalerao</h2>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6 sm:mb-8">
             A passionate UI/UX designer with 5+ years of experience creating user-centered digital solutions. 
             I specialize in transforming complex problems into intuitive, accessible, and delightful experiences 
@@ -121,7 +93,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
+      <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8">Let's Create Together</h2>
           <p className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 leading-relaxed">
@@ -159,7 +131,7 @@ export default function Portfolio() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <a 
-              href="mailto:hello@piyusha.design" 
+              href="mailto:hello@piyushabhalerao.design" 
               className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors text-sm sm:text-base cursor-pointer"
             >
               Start a Project
@@ -175,10 +147,10 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 sm:py-12 px-4 sm:px-6 border-t border-white/10">
+      <footer className="py-8 sm:py-12 px-4 sm:px-6 border-t border-white/10 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center">
           <p className="text-gray-400 mb-4 sm:mb-0 text-sm sm:text-base text-center sm:text-left">
-            © 2024 Piyusha. All rights reserved.
+            © 2024 Piyusha Bhalerao. All rights reserved.
           </p>
           <div className="flex space-x-4 sm:space-x-6">
             <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base cursor-pointer">LinkedIn</a>

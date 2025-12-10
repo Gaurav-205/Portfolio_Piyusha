@@ -31,8 +31,8 @@ git commit -m "Initial commit: Full-stack base template with Next.js and Express
 
 1. Go to [GitHub.com](https://github.com)
 2. Click "New repository"
-3. Repository name: `your-project-name`
-4. Description: "Full-stack base template with Next.js and Express"
+3. Repository name: `piyusha-bhalerao-portfolio`
+4. Description: "Piyusha Bhalerao's UI/UX Designer Portfolio with 3D Gallery and Magic Cursor"
 5. Choose Public or Private
 6. **DO NOT** initialize with README, .gitignore, or license (we already have these)
 7. Click "Create repository"
@@ -55,10 +55,10 @@ git push -u origin main
 After pushing, configure your repository:
 
 1. **Add Topics/Tags**: Go to repository settings → Topics
-   - Add: `nextjs`, `express`, `typescript`, `fullstack`, `template`, `starter`
+   - Add: `portfolio`, `ui-ux`, `nextjs`, `threejs`, `typescript`, `3d-gallery`, `magic-cursor`
 
 2. **Add Description**: 
-   "Full-stack base template with Next.js 16, Express.js, TypeScript, and Tailwind CSS"
+   "Piyusha Bhalerao's UI/UX Designer Portfolio featuring 3D Gallery, Magic Cursor, and modern web technologies"
 
 3. **Enable Discussions** (optional): For community support
 
