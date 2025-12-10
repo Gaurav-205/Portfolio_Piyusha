@@ -73,11 +73,29 @@ A stunning UI/UX designer portfolio featuring an immersive 3D gallery experience
 └── scripts/               # Build/deployment scripts
 ```
 
+## 🚀 Quick Deploy to Netlify
+
+### One-Click Deploy
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/piyusha-portfolio)
+
+### Manual Deploy Steps
+1. **Build Settings in Netlify**:
+   - Base directory: `frontend`
+   - Build command: `npm run build`
+   - Publish directory: `out`
+   - Node version: `20`
+
+2. **Environment Variables** (optional):
+   - `NEXT_PUBLIC_SITE_URL`: Your Netlify site URL
+   - `NEXT_PUBLIC_CONTACT_EMAIL`: Contact email
+
+📋 **[Complete Deployment Guide](DEPLOYMENT.md)**
+
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
+- Node.js (v20.9.0 or higher) - Required for Next.js 16
 - npm or yarn
 
 ### Installation
@@ -88,7 +106,7 @@ cd frontend
 npm install
 ```
 
-2. Install backend dependencies:
+2. Install backend dependencies (optional):
 ```bash
 cd backend
 npm install
@@ -103,12 +121,14 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Start backend development server:
+### Production Build
+
+Build for production:
 ```bash
-cd backend
-npm run dev
+cd frontend
+npm run build
 ```
-Backend runs on [http://localhost:5000](http://localhost:5000) by default.
+The static files will be generated in `frontend/out/` directory.
 
 ## Available Scripts
 

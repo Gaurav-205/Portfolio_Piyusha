@@ -40,7 +40,7 @@ export default function Home() {
     <main className="relative min-h-screen bg-black text-white">
       <InfiniteGallery
         images={sampleImages}
-        speed={1.2}
+        speed={0.8}
         zSpacing={3}
         visibleCount={12}
         falloff={{ near: 0.8, far: 14 }}

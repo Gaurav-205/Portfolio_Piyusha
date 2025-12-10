@@ -59,11 +59,11 @@ interface PlaneData {
 const DEFAULT_DEPTH_RANGE = 50;
 const MAX_HORIZONTAL_OFFSET = 8;
 const MAX_VERTICAL_OFFSET = 8;
-const MAX_SCROLL_VELOCITY = 6;
-const SCROLL_ACCEL = 0.004;
-const KEY_ACCEL = 1.0;
-const AUTO_ACCEL = 0.3;
-const DAMPING = 0.94;
+const MAX_SCROLL_VELOCITY = 3;
+const SCROLL_ACCEL = 0.002;
+const KEY_ACCEL = 0.4;
+const AUTO_ACCEL = 0.15;
+const DAMPING = 0.96;
 
 const clampVelocity = (v: number) =>
   Math.max(-MAX_SCROLL_VELOCITY, Math.min(MAX_SCROLL_VELOCITY, v));
