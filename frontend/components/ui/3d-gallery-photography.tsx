@@ -59,11 +59,11 @@ interface PlaneData {
 const DEFAULT_DEPTH_RANGE = 50;
 const MAX_HORIZONTAL_OFFSET = 8;
 const MAX_VERTICAL_OFFSET = 8;
-const MAX_SCROLL_VELOCITY = 3;
-const SCROLL_ACCEL = 0.002;
-const KEY_ACCEL = 0.4;
-const AUTO_ACCEL = 0.15;
-const DAMPING = 0.96;
+const MAX_SCROLL_VELOCITY = 5;
+const SCROLL_ACCEL = 0.004;
+const KEY_ACCEL = 0.8;
+const AUTO_ACCEL = 0.25;
+const DAMPING = 0.94;
 
 const clampVelocity = (v: number) =>
   Math.max(-MAX_SCROLL_VELOCITY, Math.min(MAX_SCROLL_VELOCITY, v));
@@ -208,7 +208,23 @@ function GalleryScene({
 }: Omit<InfiniteGalleryProps, 'className' | 'style'>) {
   const [scrollVelocity, setScrollVelocity] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const lastInteraction = useRef(Date.now());
+
+  // Detect mobile/tablet for responsive behavior
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Responsive adjustments - moved before usage
+  const responsiveVisibleCount = isMobile ? Math.max(4, Math.floor(visibleCount * 0.6)) : visibleCount;
+  const responsiveZSpacing = isMobile ? (zSpacing ?? 4) * 1.2 : (zSpacing ?? 4);
 
   const normalizedImages = useMemo(
     () =>
@@ -221,19 +237,20 @@ function GalleryScene({
   const textures = useTexture(normalizedImages.map((img) => img.src));
 
   const materials = useMemo(
-    () => Array.from({ length: visibleCount }, () => createClothMaterial()),
-    [visibleCount]
+    () => Array.from({ length: responsiveVisibleCount }, () => createClothMaterial()),
+    [responsiveVisibleCount]
   );
 
   const spatialPositions = useMemo(() => {
     const positions: { x: number; y: number }[] = [];
+    const mobileScale = isMobile ? 0.7 : 1; // Smaller spread on mobile
 
-    for (let i = 0; i < visibleCount; i++) {
+    for (let i = 0; i < responsiveVisibleCount; i++) {
       const horizontalAngle = (i * 2.618) % (Math.PI * 2);
       const verticalAngle = (i * 1.618 + Math.PI / 3) % (Math.PI * 2);
 
-      const horizontalRadius = (i % 3) * 1.2;
-      const verticalRadius = ((i + 1) % 4) * 0.8;
+      const horizontalRadius = (i % 3) * 1.2 * mobileScale;
+      const verticalRadius = ((i + 1) % 4) * 0.8 * mobileScale;
 
       const x =
         (Math.sin(horizontalAngle) * horizontalRadius * MAX_HORIZONTAL_OFFSET) /
@@ -245,21 +262,21 @@ function GalleryScene({
     }
 
     return positions;
-  }, [visibleCount]);
-
+  }, [responsiveVisibleCount, isMobile]);
+  
   const totalImages = normalizedImages.length;
   const depthRange = Math.max(
-    visibleCount > 0
-      ? visibleCount *
-          (zSpacing ?? DEFAULT_DEPTH_RANGE / Math.max(visibleCount, 1))
+    responsiveVisibleCount > 0
+      ? responsiveVisibleCount *
+          (responsiveZSpacing ?? DEFAULT_DEPTH_RANGE / Math.max(responsiveVisibleCount, 1))
       : DEFAULT_DEPTH_RANGE,
     1
   );
 
   const planesData = useRef<PlaneData[]>(
-    Array.from({ length: visibleCount }, (_, i) => ({
+    Array.from({ length: responsiveVisibleCount }, (_, i) => ({
       index: i,
-      z: visibleCount > 0 ? ((depthRange / visibleCount) * i) % depthRange : 0,
+      z: responsiveVisibleCount > 0 ? ((depthRange / responsiveVisibleCount) * i) % depthRange : 0,
       imageIndex: totalImages > 0 ? i % totalImages : 0,
       x: spatialPositions[i]?.x ?? 0,
       y: spatialPositions[i]?.y ?? 0,
@@ -267,17 +284,17 @@ function GalleryScene({
   );
 
   useEffect(() => {
-    planesData.current = Array.from({ length: visibleCount }, (_, i) => ({
+    planesData.current = Array.from({ length: responsiveVisibleCount }, (_, i) => ({
       index: i,
       z:
-        visibleCount > 0
-          ? ((depthRange / Math.max(visibleCount, 1)) * i) % depthRange
+        responsiveVisibleCount > 0
+          ? ((depthRange / Math.max(responsiveVisibleCount, 1)) * i) % depthRange
           : 0,
       imageIndex: totalImages > 0 ? i % totalImages : 0,
       x: spatialPositions[i]?.x ?? 0,
       y: spatialPositions[i]?.y ?? 0,
     }));
-  }, [depthRange, spatialPositions, totalImages, visibleCount]);
+  }, [depthRange, spatialPositions, totalImages, responsiveVisibleCount]);
 
   const handleWheel = useCallback(
     (event: WheelEvent) => {
@@ -310,18 +327,53 @@ function GalleryScene({
     [speed]
   );
 
+  // Touch gesture handling for mobile
+  const handleTouchStart = useCallback((event: TouchEvent) => {
+    const touch = event.touches[0];
+    if (touch) {
+      lastInteraction.current = Date.now();
+      setAutoPlay(false);
+    }
+  }, []);
+
+  const handleTouchMove = useCallback(
+    (event: TouchEvent) => {
+      event.preventDefault();
+      const touch = event.touches[0];
+      if (touch) {
+        // Simple touch velocity based on movement
+        const touchVelocity = 0.01; // Gentle touch sensitivity
+        setScrollVelocity((prev) =>
+          clampVelocity(prev + touchVelocity * (speed ?? 1))
+        );
+        lastInteraction.current = Date.now();
+      }
+    },
+    [speed]
+  );
+
   useEffect(() => {
     const canvas = document.querySelector('canvas');
     if (canvas) {
       canvas.addEventListener('wheel', handleWheel, { passive: false });
       document.addEventListener('keydown', handleKeyDown);
+      
+      // Add touch events for mobile
+      if (isMobile) {
+        canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
+        canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+      }
 
       return () => {
         canvas.removeEventListener('wheel', handleWheel);
         document.removeEventListener('keydown', handleKeyDown);
+        if (isMobile) {
+          canvas.removeEventListener('touchstart', handleTouchStart);
+          canvas.removeEventListener('touchmove', handleTouchMove);
+        }
       };
     }
-  }, [handleWheel, handleKeyDown]);
+  }, [handleWheel, handleKeyDown, handleTouchStart, handleTouchMove, isMobile]);
 
   useEffect(() => {
     const interval = setInterval(() => {
