@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SmoothCursor } from "@/components/ui/magic-cursor";
 
 export const metadata: Metadata = {
   title: "Piyusha - UI/UX Designer",
@@ -15,6 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
+        <SmoothCursor />
       </body>
     </html>
   );

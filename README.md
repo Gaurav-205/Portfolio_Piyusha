@@ -19,6 +19,7 @@ A stunning UI/UX designer portfolio featuring an immersive 3D gallery experience
 ### Portfolio Experience
 - ✅ **3D Gallery Landing** - Immersive WebGL-powered photo gallery with cloth physics
 - ✅ **Interactive Navigation** - Mouse wheel, keyboard, and touch controls
+- ✅ **Magic Cursor** - Smooth physics-based cursor with rotation effects based on movement direction
 - ✅ **Auto-play Mode** - Resumes after user inactivity
 - ✅ **Responsive Design** - Works seamlessly across all devices
 - ✅ **WebGL Fallback** - Graceful degradation for unsupported browsers
@@ -26,6 +27,7 @@ A stunning UI/UX designer portfolio featuring an immersive 3D gallery experience
 ### Frontend
 - ✅ **Next.js 16** - Latest App Router with React 19
 - ✅ **Three.js Integration** - Advanced 3D graphics with React Three Fiber
+- ✅ **Magic Cursor** - Smooth physics-based cursor with rotation effects using Framer Motion
 - ✅ **TypeScript** - Type safety throughout
 - ✅ **Tailwind CSS v4** - Modern utility-first styling
 - ✅ **Custom Shaders** - WebGL shaders for realistic cloth effects

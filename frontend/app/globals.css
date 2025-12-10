@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+/* Custom cursor styles */
+* {
+  cursor: none !important;
+}
+
+/* Keep text cursor for inputs */
+input,
+textarea,
+select,
+[contenteditable] {
+  cursor: text !important;
+}
+
+/* Keep pointer cursor for buttons and links when needed */
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed !important;
+}

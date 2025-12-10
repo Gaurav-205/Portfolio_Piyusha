@@ -57,7 +57,7 @@ export default function Home() {
         <div className="pointer-events-auto">
           <a
             href="/portfolio"
-            className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+            className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:scale-105 text-sm sm:text-base cursor-pointer"
           >
             View Portfolio
             <svg className="ml-2 w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -4,17 +4,17 @@ export default function Portfolio() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-          <a href="/" className="text-xl sm:text-2xl font-semibold italic">
+          <a href="/" className="text-xl sm:text-2xl font-semibold italic cursor-pointer">
             Piyusha
           </a>
           <div className="hidden sm:flex items-center space-x-6 lg:space-x-8">
-            <a href="#work" className="hover:text-gray-300 transition-colors text-sm lg:text-base">Work</a>
-            <a href="#about" className="hover:text-gray-300 transition-colors text-sm lg:text-base">About</a>
-            <a href="#contact" className="hover:text-gray-300 transition-colors text-sm lg:text-base">Contact</a>
+            <a href="#work" className="hover:text-gray-300 transition-colors text-sm lg:text-base cursor-pointer">Work</a>
+            <a href="#about" className="hover:text-gray-300 transition-colors text-sm lg:text-base cursor-pointer">About</a>
+            <a href="#contact" className="hover:text-gray-300 transition-colors text-sm lg:text-base cursor-pointer">Contact</a>
           </div>
           {/* Mobile menu button */}
           <div className="sm:hidden">
-            <button className="text-white hover:text-gray-300">
+            <button className="text-white hover:text-gray-300 cursor-pointer">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -160,13 +160,13 @@ export default function Portfolio() {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <a 
               href="mailto:hello@piyusha.design" 
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors text-sm sm:text-base"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors text-sm sm:text-base cursor-pointer"
             >
               Start a Project
             </a>
             <a 
               href="/" 
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border border-white/20 rounded-full hover:bg-white/10 transition-colors text-sm sm:text-base"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border border-white/20 rounded-full hover:bg-white/10 transition-colors text-sm sm:text-base cursor-pointer"
             >
               Back to Gallery
             </a>
@@ -181,9 +181,9 @@ export default function Portfolio() {
             © 2024 Piyusha. All rights reserved.
           </p>
           <div className="flex space-x-4 sm:space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">LinkedIn</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Dribbble</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Behance</a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base cursor-pointer">LinkedIn</a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base cursor-pointer">Dribbble</a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base cursor-pointer">Behance</a>
           </div>
         </div>
       </footer>
