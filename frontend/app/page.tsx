@@ -41,9 +41,9 @@ export default function Home() {
       <InfiniteGallery
         images={sampleImages}
         speed={0.8}
-        zSpacing={3}
-        visibleCount={12}
-        falloff={{ near: 0.8, far: 14 }}
+        zSpacing={4}
+        visibleCount={8}
+        falloff={{ near: 1.2, far: 12 }}
         className="h-screen w-full overflow-hidden rounded-none"
       />
 

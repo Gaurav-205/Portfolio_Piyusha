@@ -99,21 +99,17 @@ const createClothMaterial = () =>
         float distanceFromCenter = length(pos.xy);
         float curve = distanceFromCenter * distanceFromCenter * curveIntensity;
         
-        // Add gentle cloth-like ripples
-        float ripple1 = sin(pos.x * 2.0 + scrollForce * 3.0) * 0.02;
-        float ripple2 = sin(pos.y * 2.5 + scrollForce * 2.0) * 0.015;
-        float clothEffect = (ripple1 + ripple2) * abs(curveIntensity) * 2.0;
+        // Simplified cloth-like ripples for better performance
+        float ripple1 = sin(pos.x * 1.5 + scrollForce * 2.0) * 0.015;
+        float clothEffect = ripple1 * abs(curveIntensity) * 1.5;
         
-        // Flag waving effect when hovered
+        // Simplified flag waving effect when hovered
         float flagWave = 0.0;
         if (isHovered > 0.5) {
-          float wavePhase = pos.x * 3.0 + time * 8.0;
-          float waveAmplitude = sin(wavePhase) * 0.1;
+          float wavePhase = pos.x * 2.0 + time * 6.0;
+          float waveAmplitude = sin(wavePhase) * 0.08;
           float dampening = smoothstep(-0.5, 0.5, pos.x);
           flagWave = waveAmplitude * dampening;
-          
-          float secondaryWave = sin(pos.x * 5.0 + time * 12.0) * 0.03 * dampening;
-          flagWave += secondaryWave;
         }
         
         pos.z -= (curve + clothEffect + flagWave);
@@ -132,21 +128,18 @@ const createClothMaterial = () =>
       void main() {
         vec4 color = texture2D(map, vUv);
         
-        // Simple blur approximation
+        // Optimized blur approximation - much faster
         if (blurAmount > 0.0) {
           vec2 texelSize = 1.0 / vec2(textureSize(map, 0));
-          vec4 blurred = vec4(0.0);
-          float total = 0.0;
+          vec2 blur = texelSize * blurAmount;
           
-          for (float x = -2.0; x <= 2.0; x += 1.0) {
-            for (float y = -2.0; y <= 2.0; y += 1.0) {
-              vec2 offset = vec2(x, y) * texelSize * blurAmount;
-              float weight = 1.0 / (1.0 + length(vec2(x, y)));
-              blurred += texture2D(map, vUv + offset) * weight;
-              total += weight;
-            }
-          }
-          color = blurred / total;
+          // Simple 4-sample blur instead of 25-sample
+          vec4 blurred = texture2D(map, vUv + vec2(-blur.x, 0.0)) * 0.25;
+          blurred += texture2D(map, vUv + vec2(blur.x, 0.0)) * 0.25;
+          blurred += texture2D(map, vUv + vec2(0.0, -blur.y)) * 0.25;
+          blurred += texture2D(map, vUv + vec2(0.0, blur.y)) * 0.25;
+          
+          color = mix(color, blurred, min(blurAmount * 0.5, 1.0));
         }
         
         float curveHighlight = abs(scrollForce) * 0.05;
@@ -192,7 +185,7 @@ function ImagePlane({
       onPointerEnter={() => setIsHovered(true)}
       onPointerLeave={() => setIsHovered(false)}
     >
-      <planeGeometry args={[1, 1, 32, 32]} />
+      <planeGeometry args={[1, 1, 16, 16]} />
     </mesh>
   );
 }
@@ -570,7 +563,18 @@ export default function InfiniteGallery({
 
   return (
     <div className={className} style={style}>
-      <Canvas camera={{ position: [0, 0, 0], fov: 55 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas 
+        camera={{ position: [0, 0, 0], fov: 55 }} 
+        gl={{ 
+          antialias: false, 
+          alpha: true, 
+          powerPreference: "high-performance",
+          stencil: false,
+          depth: true
+        }}
+        dpr={[1, 2]}
+        performance={{ min: 0.5 }}
+      >
         <GalleryScene
           images={images}
           speed={speed}
